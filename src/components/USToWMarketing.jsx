@@ -156,18 +156,19 @@ export default function USToWMarketing() {
           <p className="text-center text-gray-400 mb-14">One ecosystem. Built BY operators, FOR operators.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: Network, title: 'US Tow Alliance', body: 'The power of the network works for you. Towers standing with towers for a stronger future.' },
-              { icon: Bot, title: 'US Tow Dispatch', body: 'SaaS software to power your business — AI-powered for today and built for tomorrow’s AI-driven operation.' },
-              { icon: Truck, title: 'US Tow Fleet', body: 'Software that, used correctly, can and will lower your insurance costs by 10% — possibly more.' },
-              { icon: Megaphone, title: 'US Tow Marketing', body: 'Custom-built, AI-powered 24/7 marketing that funnels leads into one place daily for your team’s follow-up — building your brand while you sleep.' },
-              { icon: Phone, title: 'US Tow AI Connect', body: 'Inbound call answering with live ETA updates, plus the first and only customer-engineered outbound calling sales logic.' },
-              { icon: Briefcase, title: 'US Tow Jobs', body: 'The industry’s first and only custom-built jobs source — replacing everything Indeed does, and more.' }
+              { icon: Network, title: 'US Tow Alliance', body: 'The power of the network works for you. Towers standing with towers for a stronger future.', url: 'https://www.ustowalliance.com' },
+              { icon: Bot, title: 'US Tow Dispatch', body: 'SaaS software to power your business — AI-powered for today and built for tomorrow’s AI-driven operation.', url: 'https://www.ustowdispatch.com' },
+              { icon: Truck, title: 'US Tow Fleet', body: 'Software that, used correctly, can and will lower your insurance costs by 10% — possibly more.', url: 'https://www.ustowfleet.com' },
+              { icon: Megaphone, title: 'US Tow Marketing', body: 'Custom-built, AI-powered 24/7 marketing that funnels leads into one place daily for your team’s follow-up — building your brand while you sleep.', url: 'https://www.ustowalliance.com/ai-is-here/' },
+              { icon: Phone, title: 'US Tow AI Connect', body: 'Inbound call answering with live ETA updates, plus the first and only customer-engineered outbound calling sales logic.', url: 'https://www.ustowaiconnect.com' },
+              { icon: Briefcase, title: 'US Tow Jobs', body: 'The industry’s first and only custom-built jobs source — replacing everything Indeed does, and more.', url: 'https://www.ustowjobs.com' }
             ].map((f, i) => (
-              <div key={i} className="bg-graphite border border-steel hover:border-cyan/40 rounded-xl p-7 transition-colors">
+              <a key={i} href={f.url} target="_blank" rel="noopener noreferrer" className="group bg-graphite border border-steel hover:border-cyan/40 rounded-xl p-7 transition-colors flex flex-col">
                 <f.icon className="w-7 h-7 text-gold mb-4" />
                 <h3 className="text-lg font-bold mb-2">{f.title}</h3>
-                <p className="text-gray-400 text-sm">{f.body}</p>
-              </div>
+                <p className="text-gray-400 text-sm flex-1">{f.body}</p>
+                <span className="inline-flex items-center gap-1.5 text-cyan text-sm font-semibold mt-4 group-hover:gap-2.5 transition-all">Visit site <ExternalLink size={14} /></span>
+              </a>
             ))}
           </div>
         </div>
