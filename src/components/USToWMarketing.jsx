@@ -157,19 +157,28 @@ export default function USToWMarketing() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { icon: Network, title: 'US Tow Alliance', body: 'The power of the network works for you. Towers standing with towers for a stronger future.', url: 'https://www.ustowalliance.com' },
-              { icon: Bot, title: 'US Tow Dispatch', body: 'SaaS software to power your business — AI-powered for today and built for tomorrow’s AI-driven operation.', url: 'https://www.ustowdispatch.com' },
               { icon: Truck, title: 'US Tow Fleet', body: 'Software that, used correctly, can and will lower your insurance costs by 10% — possibly more.', url: 'https://www.ustowfleet.com' },
-              { icon: Megaphone, title: 'US Tow Marketing', body: 'Custom-built, AI-powered 24/7 marketing that funnels leads into one place daily for your team’s follow-up — building your brand while you sleep.', url: 'https://www.ustowalliance.com/ai-is-here/' },
+              { icon: Bot, title: 'US Tow Dispatch', body: 'SaaS software to power your business — AI-powered for today and built for tomorrow’s AI-driven operation.', url: 'https://www.ustowdispatch.com' },
+              { icon: Megaphone, title: 'US Tow Marketing', body: 'Custom-built, AI-powered 24/7 marketing that funnels leads into one place daily for your team’s follow-up — building your brand while you sleep.', url: 'https://www.ustowmarketing.com' },
               { icon: Phone, title: 'US Tow AI Connect', body: 'Inbound call answering with live ETA updates, plus the first and only customer-engineered outbound calling sales logic.', url: 'https://www.ustowaiconnect.com' },
-              { icon: Briefcase, title: 'US Tow Jobs', body: 'The industry’s first and only custom-built jobs source — replacing everything Indeed does, and more.', url: 'https://www.ustowjobs.com' }
-            ].map((f, i) => (
-              <a key={i} href={f.url} target="_blank" rel="noopener noreferrer" className="group bg-graphite border border-steel hover:border-cyan/40 rounded-xl p-7 transition-colors flex flex-col">
-                <f.icon className="w-7 h-7 text-gold mb-4" />
-                <h3 className="text-lg font-bold mb-2">{f.title}</h3>
-                <p className="text-gray-400 text-sm flex-1">{f.body}</p>
-                <span className="inline-flex items-center gap-1.5 text-cyan text-sm font-semibold mt-4 group-hover:gap-2.5 transition-all">Visit site <ExternalLink size={14} /></span>
-              </a>
-            ))}
+              { icon: Briefcase, title: 'US Tow Jobs', body: 'The industry’s first and only custom-built jobs source — replacing everything Indeed does, and more.', url: 'https://www.ustowjobs.com' },
+              { icon: Gauge, title: 'US Tow Command', body: 'Your real-time command center for dispatch and operations — every job, driver, and truck in one view.', comingSoon: true }
+            ].map((f, i) => {
+              const cls = 'group bg-graphite border border-steel hover:border-cyan/40 rounded-xl p-7 transition-colors flex flex-col';
+              const inner = (
+                <>
+                  <f.icon className="w-7 h-7 text-gold mb-4" />
+                  <h3 className="text-lg font-bold mb-2">{f.title}</h3>
+                  <p className="text-gray-400 text-sm flex-1">{f.body}</p>
+                  {f.url
+                    ? <span className="inline-flex items-center gap-1.5 text-cyan text-sm font-semibold mt-4 group-hover:gap-2.5 transition-all">Visit site <ExternalLink size={14} /></span>
+                    : <span className="inline-flex items-center gap-1.5 text-gray-500 text-sm font-semibold mt-4">Coming soon</span>}
+                </>
+              );
+              return f.url
+                ? <a key={i} href={f.url} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+                : <div key={i} className={cls + ' opacity-90'}>{inner}</div>;
+            })}
           </div>
         </div>
       </section>
