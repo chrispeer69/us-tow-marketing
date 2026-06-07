@@ -21,6 +21,36 @@ export default function USToWMarketing() {
     { value: '99.9%', label: 'Uptime' }
   ];
 
+  const handleReserve = (e) => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const v = (k) => (f.get(k) || '').toString().trim();
+    const body = [
+      `Name: ${v('name')}`,
+      `Company: ${v('company')}`,
+      `City: ${v('city')}`,
+      `State: ${v('state')}`,
+      `Position in company: ${v('position')}`,
+      `Fleet size: ${v('fleet')}`,
+      `Ready to market: ${v('timeline')}`,
+      '',
+      'Biggest marketing problem:',
+      v('problem'),
+      '',
+      'What I would like my marketing to look like:',
+      v('vision'),
+      '',
+      'How you can help me now:',
+      v('help'),
+      ''
+    ].join('\n');
+    const href = `mailto:chris@bluecollarai.online?subject=${encodeURIComponent('Reserve Your Seat — US Tow Marketing')}&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
+  };
+
+  const inputCls = 'w-full bg-graphite border border-steel rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan transition-colors';
+  const labelCls = 'block text-sm font-medium text-gray-300 mb-1.5';
+
   return (
     <div className="min-h-screen bg-graphite text-white selection:bg-cyan/30">
       {/* NAV */}
@@ -279,13 +309,72 @@ export default function USToWMarketing() {
       <section id="contact" className="relative py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-alliance to-graphite" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] rounded-full bg-cyan/10 blur-3xl" />
-        <div className="relative max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-5xl font-extrabold mb-4">See It Live — Join Our Weekly Zoom</h2>
-          <p className="text-lg text-gray-300 mb-10">No free trial, no guesswork. Hop on our live Zoom — held once a week — to see exactly how US Tow Marketing works before you commit. The industry belongs to the owners. Take control.</p>
-          <a href="#" className="inline-flex items-center gap-2 bg-gold hover:shadow-glow-gold text-graphite font-bold py-4 px-10 rounded-lg transition-shadow text-lg">
-            Reserve Your Seat <ArrowRight size={20} />
-          </a>
-          <p className="text-sm text-gray-400 mt-5">Free weekly session · Learn more, no obligation · Plans are a 12-month commitment</p>
+        <div className="relative max-w-2xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-5xl font-extrabold mb-4">See It Live — Join Our Weekly Zoom</h2>
+            <p className="text-lg text-gray-300">No free trial, no guesswork. Tell us about your operation and we'll get you a seat on our next weekly Zoom to show you exactly how US Tow Marketing works. The industry belongs to the owners. Take control.</p>
+          </div>
+          <form onSubmit={handleReserve} className="bg-panel/70 backdrop-blur border border-steel rounded-2xl p-6 sm:p-8 space-y-5 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label className={labelCls} htmlFor="name">Name</label>
+                <input id="name" name="name" type="text" required className={inputCls} placeholder="Your name" />
+              </div>
+              <div>
+                <label className={labelCls} htmlFor="company">Company</label>
+                <input id="company" name="company" type="text" required className={inputCls} placeholder="Company name" />
+              </div>
+              <div>
+                <label className={labelCls} htmlFor="city">City</label>
+                <input id="city" name="city" type="text" className={inputCls} placeholder="City" />
+              </div>
+              <div>
+                <label className={labelCls} htmlFor="state">State</label>
+                <input id="state" name="state" type="text" className={inputCls} placeholder="State" />
+              </div>
+              <div>
+                <label className={labelCls} htmlFor="position">Position in company</label>
+                <input id="position" name="position" type="text" className={inputCls} placeholder="e.g. Owner, Manager" />
+              </div>
+              <div>
+                <label className={labelCls} htmlFor="fleet">Fleet size</label>
+                <input id="fleet" name="fleet" type="text" className={inputCls} placeholder="# of trucks" />
+              </div>
+            </div>
+
+            <div>
+              <span className={labelCls}>How soon are you ready to market?</span>
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mt-1">
+                {['Ready now', 'Ready in one week', 'Ready in one month'].map((opt) => (
+                  <label key={opt} className="flex items-center gap-2 text-gray-300 cursor-pointer">
+                    <input type="radio" name="timeline" value={opt} className="accent-cyan w-4 h-4" /> {opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className={labelCls} htmlFor="problem">What is your biggest marketing problem?</label>
+              <textarea id="problem" name="problem" rows={3} className={inputCls} placeholder="Tell us what's holding your marketing back" />
+            </div>
+            <div>
+              <label className={labelCls} htmlFor="vision">What would you like your marketing to look like?</label>
+              <textarea id="vision" name="vision" rows={3} className={inputCls} placeholder="Describe your ideal marketing" />
+            </div>
+            <div>
+              <label className={labelCls} htmlFor="help">How can we help you now?</label>
+              <textarea id="help" name="help" rows={3} className={inputCls} placeholder="What do you need most right now?" />
+            </div>
+
+            <button type="submit" className="w-full inline-flex items-center justify-center gap-2 bg-gold hover:shadow-glow-gold text-graphite font-bold py-4 px-10 rounded-lg transition-shadow text-lg">
+              Reserve Your Seat <ArrowRight size={20} />
+            </button>
+            <p className="text-sm text-gray-400 text-center">Free weekly session · No obligation · Plans are a 12-month minimum</p>
+          </form>
+          <p className="text-sm text-gray-400 mt-4 text-center">
+            Prefer to email directly?{' '}
+            <a href="mailto:chris@bluecollarai.online" className="text-cyan hover:underline">chris@bluecollarai.online</a>
+          </p>
         </div>
       </section>
 
