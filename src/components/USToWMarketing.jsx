@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, Phone, MessageSquare, Globe, Zap, Users, Target, ShieldCheck, Gauge, Bot, ArrowRight, Truck, ExternalLink, Network, Cpu, Wrench, HeartHandshake, Megaphone, Briefcase } from 'lucide-react';
+import { Check, Phone, MessageSquare, Globe, Zap, Users, Target, ShieldCheck, Gauge, Bot, ArrowRight, Truck, ExternalLink, Network, Cpu, Wrench, HeartHandshake, Megaphone, Briefcase, LogIn } from 'lucide-react';
 
 export default function USToWMarketing() {
   const pricingPlans = [
@@ -64,15 +64,25 @@ export default function USToWMarketing() {
               US Tow <span className="text-cyan">Marketing</span>
             </span>
           </a>
-          <a
-            href="https://www.bluecollarai.online"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:flex items-center gap-2 text-sm text-gray-400 hover:text-cyan transition-colors"
-          >
-            <Cpu size={16} className="text-cyan" />
-            <span>Powered by <span className="font-bold text-white">Blue Collar AI</span></span>
-          </a>
+          <div className="flex items-center gap-6">
+            <a
+              href="https://www.bluecollarai.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-2 text-sm text-gray-400 hover:text-cyan transition-colors"
+            >
+              <Cpu size={16} className="text-cyan" />
+              <span>Powered by <span className="font-bold text-white">Blue Collar AI</span></span>
+            </a>
+            {/* Sign in -> central US Tow SSO (this site has no accounts of its own) */}
+            <a
+              href="https://us-tow-sso-production.up.railway.app/"
+              className="flex items-center gap-2 text-sm text-gray-400 hover:text-cyan transition-colors"
+            >
+              <LogIn size={16} className="text-cyan" />
+              <span>Sign in</span>
+            </a>
+          </div>
         </div>
       </nav>
 
